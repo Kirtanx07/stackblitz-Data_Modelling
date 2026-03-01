@@ -1,35 +1,30 @@
-import mongoose from 'mongoose'
-import { SubTodo } from './sub_todo.models'
+import mongoose from "mongoose"
 
 const todoSchema = new mongoose.Schema(
   {
-    content:{
-      type:String,
-      required:true
+    content: {
+      type: String,
+      required: true
     },
 
     complete: {
       type: Boolean,
-      default:false
+      default: false
     },
 
-    createdBy:{
+    createdBy: {
       type: mongoose.Schema.Types.ObjectId,
-    ref: "User"
+      ref: "User"
     },
 
-    SubTodo:[
+    subTodos: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "SubTodo"
       }
-    ] //array
-
-
+    ]
   },
+  { timestamps: true }
+)
 
-
-
-  },{timestamps:true})
-
-export const Todo = mongoose.model("Todo",todoSchema)
+export const Todo = mongoose.model("Todo", todoSchema)
